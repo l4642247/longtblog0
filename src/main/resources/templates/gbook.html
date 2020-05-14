@@ -1,0 +1,110 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::header"></head>
+<body>
+<header class="header-navigation" id="header">
+  <nav><div class="logo"><a href="/">从前的我们</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="index.html">网站首页</a></li>
+      <li><a href="../gbook.html">恰饭时间</a></li>
+      <li><a href="../gbook.html" id="selected">客官留言</a></li>
+    </ul>
+</nav>
+</header>
+<article class="gbook-inner">
+  <div class="introduce">
+    <img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/pic/item/8cb1cb1349540923d1c6d0689d58d109b3de497c.jpg">
+    <p>或许直到这一刻，他们才终于对自己的人生，做了回主了。 </p>
+    <p>日光之下无新事。 </p>
+    <p> 不管哪个时代，不管哪个国度，总是不断出现扮演“小丑”的人。 </p>
+    <p>只是不知道： </p>
+    <p>究竟疯狂是小丑，还是这个孕育出小丑的世道呢？  </p>
+  </div>
+  
+  <div id="comment"></div>
+  <div class="gbox">
+    <form action="/comment/create" method="post" name="form1" id="form1" class="layui-form">
+      <input name="type" type="hidden" id="type" value="0">
+      <p> <strong>来说点儿什么吧...</strong></p>
+
+      <div class="layui-form-item">
+        <!--<label class="layui-form-label">昵称:</label>-->
+          <input type="text" name="name" lay-verify="required" placeholder="*昵称" autocomplete="off" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+          <input type="text" name="email" lay-verify="required|email" placeholder="*邮箱" autocomplete="off" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+          <input type="text" name="website" placeholder="网站" autocomplete="on" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <textarea id="content" lay-verify="pass" name="content" class="layui-textarea"></textarea>
+      </div>
+
+      <p>
+        <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+      </p>
+    </form>
+  </div>
+</article>
+<footer th:replace="footer::footer"></footer>
+<a href="#" class="cd-top">Top</a>
+<script>
+    var layedit;
+    var index;
+    $(function(){
+        catalogInit();
+        initComment();
+
+        //编辑器部分
+        layui.use('layedit', function(){
+            layedit = layui.layedit;
+            //创建富文本
+            index = layedit.build('content',{
+                tool: ['left', 'center', 'right', '|', 'face'],
+                height: 130,
+                width: 720
+            });
+        });
+    })
+
+    layui.use(['form'], function() {
+        $ = layui.$;
+        var form = layui.form;
+        form.verify({
+            pass: function(value, item){ //value：表单的值、item：表单的DOM对象
+                var content = layedit.getContent(index);
+                if(trim(content) == ""){
+                   return ("你想说的是什么呢？");
+                }
+            }
+        });
+    });
+
+    function trim(str){
+        return (str.replace(/ /g,"")).replace(/&nbsp;/ig, "");
+    }
+
+    function initComment(){
+        $.ajax({
+            url: '/comment/page',
+            method: 'get',
+            dataType:'json',
+            success: function(result){
+                var html = '';
+                var mun = 0;
+                $.each(result, function(i, val){
+                    var time = val.createTime;
+                    html += '<div class="fb"><ul><p class="fbtime"><span>'+ dateDiff( new Date(time).getTime()) +'</span>'+ val.name +'</p>';
+                    html += '<p class="fbinfo">'+ val.content +'</p></ul></div>';
+                    mun++;
+                });
+                $("#comment").append(html);
+            }
+        });
+    }
+</script>
+</body>
+</html>

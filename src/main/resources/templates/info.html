@@ -1,0 +1,264 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::header"></head>
+<script type="text/javascript" src="../prism/prism.js"></script>
+
+<body>
+<header class="header-navigation" id="header">
+  <nav>
+    <div class="logo"><a href="/">极简主义</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/">网站首页</a></li>
+      <!--<li><a href="share.html">我的相册</a></li>
+      <li><a href="../list.html">我的日记</a></li>
+      <li><a href="../about.html">关于我</a></li>-->
+      <li><a href="../gbook.html">恰饭时间</a></li>
+      <li><a href="../gbook.html">客官留言</a></li>
+      <li><a href="../info.html" id="selected">正文</a></li>
+    </ul>
+  </nav>
+</header>
+<article>
+
+  <div class="site-inner">
+    <!--文章-->
+    <div class="content">
+      <div class="breadcrumb"><span class="breadcrumb-link-wrap"><a class="breadcrumb-link" href="https://free.com.tw/">
+        <span class="breadcrumb-link-text-wrap">首頁</span></a><meta></span> <span aria-label="breadcrumb separator">/</span>
+        <span class="breadcrumb-link-wrap"><a class="breadcrumb-link" th:href="@{'/index.html?catalogId='+${catalog.id}}">
+        <span class="breadcrumb-link-text-wrap" th:text="${catalog.name}">網路科技</span></a><meta></span>
+        <span aria-label="breadcrumb separator">/</span>
+        <span th:text="${article.title}">Apple Music Replay 為最常反覆回味的歌曲專輯建立年度回顧播放清單</span>
+      </div>
+
+      <div class="google-top"></div>
+      <div class="article">
+        <header>
+          <h2 class="entry-title" th:text="${article.title}"></h2>
+        </header>
+        <div class="entry-content">
+          <p th:utext="${article.content}"></p>
+        </div>
+        <footer class="entry-footer">
+          <p class="entry-meta">
+          <span class="entry-categories">分类：<a th:href="@{'/index.html?catalogId='+${catalog.id}}" rel="category tag"
+               th:text="${catalog.name}"></a>
+          </span>
+          <span class="entry-tags">标签：</span>
+          </p>
+        </footer>
+      </div>
+
+      <section class="author-box">
+        <img alt="Avatar for Pseric" title="Gravatar for Pseric" src="https://secure.gravatar.com/avatar/8b4ecff6e16758a6de1ce5e51cfa9e0d?s=96&amp;d=mm&amp;r=g" class="avatar avatar-96 photo jetpack-lazy-image jetpack-lazy-image--handled" height="96" width="96" srcset="https://secure.gravatar.com/avatar/8b4ecff6e16758a6de1ce5e51cfa9e0d?s=192&amp;d=mm&amp;r=g 2x" data-lazy-loaded="1"><noscript>
+        <img alt='Avatar for Pseric' title='Gravatar for Pseric' src='https://secure.gravatar.com/avatar/8b4ecff6e16758a6de1ce5e51cfa9e0d?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8b4ecff6e16758a6de1ce5e51cfa9e0d?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' /></noscript>
+        <h4 class="author-box-title">关于
+          <span itemprop="name">dubai</span>
+        </h4>
+        <div class="author-box-content" itemprop="description">
+          <p>上海奋斗的上班族，希望通过建站，更新来记录自己的业余生活。如果你也是一个喜欢折腾的二逼青年，欢迎一起来探讨！</p>
+        </div>
+      </section>
+    </div>
+
+
+
+    <!--右边开始-->
+    <div class="sidebar">
+      <section id="blog_subscription-4" class="widget jetpack_subscription_widget"><div class="widget-wrap"><h3 class="widgettitle widget-title">使用電子郵件訂閱網站</h3>
+        <form action="#" method="post" accept-charset="utf-8">
+          <div id="subscribe-text"><p>輸入你的電子郵件地址訂閱網站新文章，使用電子郵件接收通知。</p>
+          </div>
+          <p id="subscribe-email">
+            <input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-4" placeholder="電子郵件位址">
+          </p>
+          <p id="subscribe-submit">
+            <button type="submit" class="layui-btn"> 訂閱更新 </button>
+          </p>
+        </form>
+      </div>
+      </section>
+      <!--成功！我們剛才已傳送訂閱確認電子郵件。請立即找出這封電子郵件，並按一下「啟用」以開始訂閱。-->
+      <section id="jetpack-search-filters-3" class="widget widget_search">
+        <div class="widget-wrap">
+          <div id="jetpack-search-filters-3-wrapper" class="">
+            <h3 class="widgettitle widget-title">站內搜尋</h3>
+            <div class="jetpack-search-form">
+              <form class="search-form" method="get" action="https://free.com.tw/" role="search">
+                <input class="search-form-input" type="search" name="s" id="searchform-1" placeholder="搜尋免費資源 …">
+                <input class="search-form-submit" type="submit" value="搜尋">
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="widget widget_search">
+        <div class="widget-wrap">
+          <div id="jetpack-search-filters-3-wrapper" class="cloud">
+            <h3 class="widgettitle widget-title">标签云</h3>
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="text-125" class="widget widget_text">
+        <div class="widget-wrap"><h3 class="widgettitle widget-title">精選主題</h3>
+          <div class="textwidget tuijian">
+            <ul><!--请求后台数据--></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+</article>
+<footer th:replace="footer::footer"></footer>
+<a href="#" class="cd-top">Top</a>
+
+<script>
+  var layedit;
+  var index;
+  $(function(){
+      initNextInfo();
+      initArtTags();
+      initAllTags();
+      initComment();
+      catalogInit();
+      top8();
+      click();
+
+      //编辑器部分
+      layui.use('layedit', function(){
+          layedit = layui.layedit;
+          //创建富文本
+          index = layedit.build('content',{
+              tool: ['left', 'center', 'right', '|', 'face'],
+              height: 130,
+              width: 720
+          });
+      });
+  });
+
+  layui.use(['form'], function() {
+      $ = layui.$;
+      var form = layui.form;
+      form.verify({
+          pass: function(value, item){ //value：表单的值、item：表单的DOM对象
+              var content = layedit.getContent(index);;
+              if(trim(content) == ""){
+                  return ("你想说的是什么呢？");
+              }
+          }
+      });
+  });
+
+  function trim(str){
+      return (str.replace(/ /g,"")).replace(/&nbsp;/ig, "");
+  }
+
+  function click(){
+      var id = [[${article.id}]];
+      var username = '[[${username}]]';
+      var key = username + id;
+      if(getCookie(key) != 'see'){
+          setCookie(key, 'see', 1);
+          $.ajax({
+              url: '/click/create/' + id,
+              method: 'get',
+              dataType: 'json',
+              success: function(result){}
+          });
+      }
+  }
+
+  function initNextInfo(){
+      var id = [[${article.id}]];
+      $.ajax({
+          url: '/article/near/'+id,
+          method: 'get',
+          dataType:'json',
+          success: function(result){
+              var pre = result.pre;
+              var next = result.next;
+              var html='';
+              if(pre.id == null || typeof (pre.id) == 'undefined'){
+                  html += '<p>上一篇：<a href="../index.html">返回列表</a></p>';
+              }else{
+                  html += '<p>上一篇：<a href="' + pre.id + '">' + pre.title + '</a></p>';
+              }
+              if(next.id == null || typeof (next.id) == 'undefined'){
+                  html += '<p>下一篇：<a href="../index.html">返回列表</a></p>'
+              }else{
+                  html += '<p>下一篇：<a href="' + next.id + '">' + next.title + '</a></p>';
+              }
+              $(".nextinfo").html(html);
+          }
+      });
+  }
+
+  function initComment(){
+      var id = [[${article.id}]];
+      $.ajax({
+          url: '/comment/page?artId='+id,
+          method: 'get',
+          dataType:'json',
+          success: function(result){
+              var html = '';
+              var mun = 0;
+              $.each(result, function(i, val){
+                  var time = new Date(val.createTime);
+                  html += '<div class="fb"><ul><p class="fbtime"><span>'+ dateDiff( time.getTime()) +'</span>'+ val.name +'</p>';
+                  html += '<p>'+ val.content +'</p></ul></div>';
+                  mun++;
+              });
+              $("#comment").append(html);
+              $("#commentNum").html('共有'+mun+'条评论');
+          }
+      });
+  }
+
+  function initArtTags(){
+      var id = [[${article.id}]];
+      $.ajax({
+          url: '/tag/getTagsById/'+id,
+          method: 'get',
+          dataType:'json',
+          success: function(result){
+              var html = '标签：';
+              $.each(result, function(i, val){
+                  html += '<a href="/index.html?tag=' + val.id + '" target="_blank">'+val.name+'</a>,';
+              });
+              $(".entry-tags").html(html.substring(0, html.length-1));
+          }
+      });
+  }
+
+  function agreeInit(){
+      var id = [[${article.id}]];
+      var userId = '';
+      $.ajax({
+          url: '/agree/create',
+          method: 'post',
+          dataType:'json',
+          data:{
+              agreeId : id,
+              type : '1',
+              userId : userId
+          },
+          success: function(result){
+            var diggnum = $("#diggnum").html();
+            if(result.id != null){
+                diggnum =  parseInt(diggnum) + 1;
+                $("#diggnum").html(diggnum);
+            }
+          }
+      });
+  }
+</script>
+</body>
+</html>

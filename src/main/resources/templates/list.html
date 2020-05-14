@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::header"></head>
+<body>
+<header class="header-navigation" id="header">
+  <nav><div class="logo"><a href="/">个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="index.html">网站首页</a></li>
+      <!--<li><a href="share.html">我的相册</a></li>-->
+      <li><a href="../list.html" id="selected">我的日记</a></li>
+      <li><a href="../about.html">关于我</a></li>
+      <li><a href="../gbook.html">留言</a></li>
+    </ul>
+</nav>
+</header>
+<style>
+    .time{
+        text-align: right;
+    }
+</style>
+<article>
+  <aside class="l_box">
+    <div class="search">
+      <form action="index.html" method="get" name="searchform" id="searchform">
+          <input name="title" id="title" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+          <input name="catalog" value="" type="hidden" th:value="${catalog}">
+          <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+    <div class="fenlei">
+      <h2>文章分类</h2>
+      <ul>
+      </ul>
+    </div>
+     <div class="tuijian">
+      <h2>点击排行</h2>
+      <ul>
+      </ul>
+    </div>
+    <div class="cloud">
+      <h2>标签云</h2>
+      <ul>
+      </ul>
+    </div>
+    <div th:replace="header::guanzhu"></div>
+  </aside>
+  <main class="r_box_list">
+      <li th:each="article:${articles.content}">
+          <p class="line rightp"></p>
+          <p class="line"><img src="../assets/base/images/head.jpg"/><b>独白</b></p>
+          <p class="time" th:text="${#dates.format(article.createTime ,'MM月dd日 HH:mm')}"></p>
+          <div th:utext="${article.content}"></div>
+      </li>
+  </main>
+</article>
+<footer><footer th:replace="footer::footer"></footer></footer>
+<a href="#" class="cd-top">Top</a>
+<script>
+    $(function(){
+        catalogInit();
+        top8();
+        initAllTags();
+        initPage();
+    })
+
+    function initPage() {
+        var totalPage = [[${articles.totalPages}]];
+        var currentPage = [[${articles.number}]];
+        var size = [[${articles.size}]];
+
+        var nextPage = currentPage + 1;
+        var html = '<div class="pagelist"><a class="allpage"><b>'+totalPage+'</b></a>&nbsp;&nbsp;';
+        for (var i=0; i<totalPage; i++){
+            html += '<a href="#" ';
+            if(i == currentPage){
+                html += 'class="curPage">'+i+'</a>&nbsp;&nbsp;';
+            }else{
+                html += 'onclick="page('+i+','+size+')">'+i+'</a>&nbsp;&nbsp;';
+            }
+        }
+        if(currentPage != totalPage-1) {
+            html += '<a href="#" onclick="page(' + nextPage + ',' + size + ')">下一页</a></div>';
+        }
+        $('main li:last-child').after(html);
+    }
+
+    function page(toPage, size){
+        location.href = 'index.html?currentPage='+toPage+'&pageSize='+size;
+    }
+</script>
+</body>
+</html>

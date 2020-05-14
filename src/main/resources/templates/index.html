@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::header"></head>
+<body>
+
+  <div id="app" class="main">
+    <div class="layui-row">
+      <div class="layui-col-lg3 profile">
+        <div class="sidebar-content">
+          <img src="../assets/base/images/avatar.png">
+          <h1>Gridea Theme Walker</h1>
+          <p>一个精心设计、优雅过渡动效的主题</p>
+        </div>
+      </div>
+      <div class="layui-col-lg8 content-wrapper">
+        <div class="grid-demo">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<style>
+  .main{
+    max-width: 1200px;
+    margin: 0px auto;
+  }
+
+  .profile {
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar-content{
+    padding-top: 120px;
+  }
+
+  .sidebar-content img{
+    width: 12rem;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .sidebar-content h1,.sidebar-content p{
+    text-align: center;
+  }
+
+  .content-wrapper{
+  }
+</style>
+</html>
