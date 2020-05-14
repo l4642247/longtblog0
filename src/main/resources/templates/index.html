@@ -14,9 +14,26 @@
         </div>
       </div>
       <div class="layui-col-lg8 content-wrapper">
-        <div class="grid-demo">
+        <h2 class="col-title">最新文章</h2>
 
-        </div>
+        <section class="layui-row art">
+          <div class="layui-col-lg4" >
+            <a href="#">
+              <div class="layui-col-lg4 pic" style="background-image:url('../assets/base/images/photo-1.jpg')"></div>
+            </a>
+          </div>
+          <div class="layui-col-lg8">
+            <a href="#">
+              <h2>Markdown 测试文章</h2>
+            </a>
+            <div class="summary">
+              <p>Markdown是一种轻量级标记语言，创始人为约翰·格鲁伯（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档”。</p>
+            </div>
+            <div>2019-04-18 / 3 min read</div>
+          </div>
+        </section>
+
+
       </div>
     </div>
   </div>
@@ -48,6 +65,24 @@
   }
 
   .content-wrapper{
+    padding: 2rem;
   }
+
+  .art{
+    padding-bottom: 3rem;
+  }
+
+  .pic{
+    width: 14rem;
+    height: 10rem;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.35s cubic-bezier(0.5, 0, 0.5, 1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+
 </style>
 </html>
